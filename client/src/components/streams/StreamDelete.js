@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "../Modal";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import history from "../../history";
 import { fetchStream, deleteStream } from "../../actions";
@@ -21,9 +22,9 @@ class StreamDelete extends React.Component {
       <button className="ui button negative" onClick={this.onDeleteClick}>
         Delete
       </button>
-      <button className="ui button" onClick={this.onDismissClick}>
+      <Link to="/" className="ui button">
         Cancel
-      </button>
+      </Link>
     </>
   );
 
@@ -39,7 +40,9 @@ class StreamDelete extends React.Component {
         title="Delete Stream"
         content={this.renderContent()}
         actions={this.renderActions()}
-        onDismiss={this.onDismissClick}
+        onDismiss={() => {
+          history.push("/");
+        }}
       />
     );
   }
